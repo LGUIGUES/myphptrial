@@ -1,0 +1,15 @@
+[
+  {
+    "name": "john",
+    "surname": "Doe"
+  },
+  {
+    "name": "john",
+    "surname": "Doe",
+    "city": "Montréal"
+  },
+    {
+      "surname": "Doe",
+      "city": "Auckland"
+    }
+]
