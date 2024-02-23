@@ -11,17 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (!empty($_FILES['uploadFile']['tmp_name'])) {
 
-    $file_tmp_name = $_FILES["uploadFile"]["tmp_name"];
-    $file_name = $_FILES["uploadFile"]["name"];
+    $file_tmp_name = $_FILES['uploadFile']['tmp_name'];
+    $file_name = $_FILES['uploadFile']['name'];
     $file_content = file_get_contents($file_tmp_name);
     $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-
-    // PROCESS THE FILE AND POST CONTENT ✉
+    $file_size = $_FILES['uploadFile']['size'];
 
     // Max size of file - 2Mo
     $maxUploadSize = 2000000;
 
-    if ($_FILES['uploadFile']['size'] <= $maxUploadSize) {
+    if ($file_size <= $maxUploadSize) {
 
       // Array of valid extension
       $validExt = ['csv', 'json'];
@@ -31,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($file_extension == 'csv') {
 
           $validFile = csvFileConverter($file_content);
-          //var_dump($validFile);
+        
           $result = fileValidator($validFile);
           
           if($result) {
@@ -40,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         } else {
           $validFile = $file_content;
-          //var_dump($validFile);
+          
           $result = fileValidator($validFile);
           
           if($result === false) {
@@ -113,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </main>
 
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-muted ms-2">© 2022 Laurent GUIGUES</p>
+    <p class="col-md-4 mb-0 text-muted ms-2">© 2022 - 2024 Laurent GUIGUES</p>
 
   </footer>
 </body>
